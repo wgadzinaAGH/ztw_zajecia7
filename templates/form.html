@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularz</title>
+</head>
+<body>
+    <h1>Formularz użytkownika</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(size=20) }}
+            {% for error in form.name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.email.label }}<br>
+            {{ form.email(size=20) }}
+            {% for error in form.email.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.dob.label }}<br>
+            {{ form.dob }}
+        </p>
+        <p>
+            {{ form.profession.label }}<br>
+            {{ form.profession }}
+        </p>
+        <p>
+            {{ form.student_status.label }}<br>
+            {{ form.student_status }}
+        </p>
+        <p>
+            {{ form.location.label }}<br>
+            {{ form.location(size=20) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    
+    <!-- formularz z ćwiczenia 1 
+    <form method="POST" action="/submit">
+
+        <label for="name">Imię i nazwisko:</label>
+        <input type="text" id="name" name="name" required>
+        <br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <br><br>
+
+        <label for="dob">Data urodzenia:</label>
+        <input type="date" id="dob" name="dob" required>
+        <br><br>
+
+        <label for="profession">Zawód:</label>
+        <select id="profession" name="profession" required>
+            <option value="">Wybierz...</option>
+            <option value="programista">Programista</option>
+            <option value="nauczyciel">Nauczyciel</option>
+            <option value="lekarz">Lekarz</option>
+            <option value="prawnik">Prawnik</option>
+            <option value="student">Student</option>
+        </select>
+        <br><br>
+
+        <p>Status studenta:</p>
+        <input type="radio" id="student_yes" name="student_status" value="tak">
+        <label for="student_yes">Tak</label>
+        <br>
+        <input type="radio" id="student_no" name="student_status" value="nie">
+        <label for="student_no">Nie</label>
+        <br><br>
+
+        <label for="location">Miejsce zamieszkania:</label>
+        <input type="text" id="location" name="location" required>
+        <br><br>
+
+        <button type="submit">Wyślij</button>
+    </form> -->
+</body>
+</html>
